@@ -1,4 +1,5 @@
 from fastapi import Request, FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from app.analyzer.textblob import TextBlobAnalyzer
 from app.analyzer.vader import VaderAnalyzer
@@ -8,6 +9,15 @@ from app.server.models.models import SearchQuery
 from app.twitter.twitter_client import TwitterClient
 
 app = FastAPI()
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 client = TwitterClient()
 text_blob = TextBlobAnalyzer()
 vader = VaderAnalyzer()
