@@ -1,5 +1,6 @@
 import tweepy
 import re
+import numpy as np
 
 class TwitterClient:
     def __init__(self):
@@ -11,13 +12,11 @@ class TwitterClient:
         self.auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(self.auth)
 
-    def read_tweeets(self, query):
+    def read_tweeets(self, query, max_results):
         filtered = query + "-filter:retweets"
         tweets = tweepy.Cursor(self.api.search_tweets,
                                q=filtered,
-                               lang="en").items(100)
-        filtered_tweets = [[self.clean_tweet(tweet.text)] for tweet in tweets]
+                               lang="en").items(max_results)
+        filtered_tweets = [[tweet.text] for tweet in tweets]
         return filtered_tweets
 
-    def clean_tweet(self, tweet):
-        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w+: / / \S+)", " ", tweet).split())

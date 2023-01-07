@@ -2,3 +2,6 @@ fastapi
 uvicorn
 tweepy
 textblob
+numpy
+vaderSentiment
+pattern

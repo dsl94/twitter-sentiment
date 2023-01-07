@@ -1,6 +1,5 @@
 from textblob import TextBlob
 
-
-class TextBlobAnalyzer():
+class TextBlobAnalyzer:
     def analyze(self, tweet):
         return TextBlob(tweet).sentiment.polarity
