@@ -51,6 +51,7 @@ async def search(search: SearchQuery):
         "analyzed_tweets": analyzed_tweets,
         "results_per_library": analyzer.extract_results_per_library(analyzed_tweets),
         "sentiment_per_library": analyzer.extract_number_of_different_sentiments_per_library(analyzed_tweets),
+        "f_score": [analyzer.prec_rec_fscore(analyzed_tweets, "text_blob"), analyzer.prec_rec_fscore(analyzed_tweets, "pattern")]
     }
 
     return result
