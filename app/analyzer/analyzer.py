@@ -44,7 +44,7 @@ class Analyzer:
             "FP": false_positives,
             "TN": true_negatives,
             "FN": false_negatives,
-            "F-SCORE": f_score
+            "F_SCORE": f_score
         }
 
     def extract_number_of_different_sentiments_per_library(self, all_results):
